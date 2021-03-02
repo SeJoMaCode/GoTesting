@@ -3,7 +3,7 @@ let ctx;
 
 const ws = new WebSocket("wss://race-game-go.herokuapp.com/ws")
 // const ws = new WebSocket('ws://localhost:3000/ws'); 
-let version = '0.1.1'
+let version = '0.1.2'
 
 class Box {
     constructor(x, y, w, h) {
@@ -41,15 +41,17 @@ document.onclick = (e) => {
         if(box1.checkClick(e.clientX, e.clientY)){
             if(color>=.5){
                 ws.send("green")
+                score++
             } else {
-                ws.send("red")
+                score-=5
             }
         }
         if(box2.checkClick(e.clientX, e.clientY)){
             if(color<.5){
                 ws.send("green")
+                score++
             } else {
-                ws.send("red")
+                score-=5
             }
         }
     }
@@ -83,9 +85,6 @@ function init(){
         box2.width = message_data.w2 * c.width
         box2.height = message_data.h2 * c.height
         color = message_data.c
-        if(message_data.message){
-            score = eval(score+message_data.message)
-        }
     }
 
     window.requestAnimationFrame(gameLoop)
