@@ -1,7 +1,7 @@
 let c;
 let ctx;
 
-const ws = new WebSocket("wss://race-game-go.herokuapp.com/ws")
+const ws = new WebSocket("wss://multiplayer-reflexes.onrender.com/ws")
 // const ws = new WebSocket('ws://localhost:3000/ws'); 
 let version = '0.1.2'
 
